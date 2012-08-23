@@ -14,8 +14,12 @@ module RailsAdminJcrop
       def rails_admin_crop
         return unless model.rails_admin_cropping?
         manipulate! do |img|
-          geometry = "#{model.crop_w}x#{model.crop_h}+#{model.crop_x}+#{model.crop_y}"
-          img.crop geometry
+          # geometry = "#{model.crop_w}x#{model.crop_h}+#{model.crop_x}+#{model.crop_y}"
+          # img.crop geometry
+          # img
+          img.crop!(model.crop_x.to_i,model.crop_y.to_i,model.crop_w.to_i,model.crop_h.to_i)
+          # img.crop("#{model.crop_w}x#{model.crop_h}+#{model.crop_x}+#{model.crop_y}")
+          # img = yield(img) if block_given?
           img
         end
       end
